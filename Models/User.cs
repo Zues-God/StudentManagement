@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace schoolManagerUser1.Models
+namespace StudentManagement.Models
 {
     public class User
     {
@@ -38,3 +38,4 @@ namespace schoolManagerUser1.Models
         public DateTime? UpdatedAt { get; set; }         // Thời gian cập nhật
     }
 }
+
