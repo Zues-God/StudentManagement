@@ -1,5 +1,5 @@
-﻿using schoolManagerUser1.Models;
-using schoolManagerUser1.View.AdminFeature;
+﻿using StudentManagement.Models;
+using StudentManagement.View.AdminFeature;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,7 +15,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace schoolManagerUser1.View
+namespace StudentManagement.View
 {
     /// <summary>
     /// Interaction logic for Admin.xaml
@@ -59,3 +59,4 @@ namespace schoolManagerUser1.View
         }
     }
 }
+
