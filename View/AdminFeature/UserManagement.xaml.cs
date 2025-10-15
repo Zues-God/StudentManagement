@@ -1,5 +1,5 @@
-﻿using schoolManagerUser1.DAO;
-using schoolManagerUser1.Models;
+﻿using StudentManagement.DAO;
+using StudentManagement.Models;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -18,7 +18,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace schoolManagerUser1.View.AdminFeature
+namespace StudentManagement.View.AdminFeature
 {
     /// <summary>
     /// Interaction logic for UserManagement.xaml
@@ -96,3 +96,4 @@ namespace schoolManagerUser1.View.AdminFeature
         }
     }
 }
+
