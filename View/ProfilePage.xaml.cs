@@ -1,13 +1,13 @@
 ﻿using Microsoft.IdentityModel.Tokens;
-using schoolManagerUser1.DAO;
-using schoolManagerUser1.Models;
-using schoolManagerUser1.Utils;
+using StudentManagement.DAO;
+using StudentManagement.Models;
+using StudentManagement.Utils;
 using System.Data;
 using System.Net;
 using System.Windows;
 using System.Windows.Controls;
 
-namespace schoolManagerUser1.View
+namespace StudentManagement.View
 {
     public partial class ProfilePage : Page
     {
@@ -124,3 +124,4 @@ namespace schoolManagerUser1.View
         }
     }
 }
+
