@@ -1,8 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using schoolManagerUser1.Models;
+using StudentManagement.Models;
 using Microsoft.EntityFrameworkCore.SqlServer;
 
-namespace schoolManagerUser1.db
+namespace StudentManagement.db
 {
     public class AppDbContext : DbContext
     {
@@ -38,3 +38,4 @@ namespace schoolManagerUser1.db
         }
     }
 }
+
