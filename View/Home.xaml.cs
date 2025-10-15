@@ -1,4 +1,4 @@
-﻿using schoolManagerUser1.Models;
+﻿using StudentManagement.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,7 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace schoolManagerUser1.View
+namespace StudentManagement.View
 {
     /// <summary>
     /// Interaction logic for Home.xaml
@@ -37,3 +37,4 @@ namespace schoolManagerUser1.View
         }
     }
 }
+
