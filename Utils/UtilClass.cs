@@ -5,7 +5,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
-namespace schoolManagerUser1.Utils
+namespace StudentManagement.Utils
 {
     internal static class UtilClass
     {
@@ -70,3 +70,4 @@ namespace schoolManagerUser1.Utils
 
     }
 }
+
