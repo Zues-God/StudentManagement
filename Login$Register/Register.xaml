@@ -1,0 +1,103 @@
+﻿<Window x:Class="schoolManagerUser1.Login_Register.Register"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:schoolManagerUser1.Login_Register"
+        mc:Ignorable="d"
+        Title="Register" Height="700" Width="400"
+        WindowStyle="None" AllowsTransparency="True" Background="Transparent">
+
+    <Grid MouseLeftButtonDown="Window_MouseLeftButtonDown">
+        <Border CornerRadius="20" Margin="0" Width="400">
+            <Grid>
+                <Grid.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="Black"/>
+                        <GradientStop Color="#FF0C8D9D" Offset="1"/>
+                    </LinearGradientBrush>
+                </Grid.Background>
+
+                <!-- Nút đóng -->
+                <Button Content="✕"
+                        Width="30" Height="30"
+                        HorizontalAlignment="Right"
+                        VerticalAlignment="Top"
+                        Background="#22FFFFFF"
+                        Foreground="White"
+                        FontSize="16"
+                        BorderThickness="0"
+                        Cursor="Hand"
+                        Click="CloseButton_Click"/>
+
+                <!-- Ô màu giữa -->
+                <Border CornerRadius="15" Background="#8692f8" Margin="80,60,80,90"/>
+
+                <!-- Tiêu đề -->
+                <Label Content="REGISTER" HorizontalAlignment="Left" Margin="115,61,0,0"
+                       VerticalAlignment="Top" Height="58" Width="158"
+                       HorizontalContentAlignment="Center" FontSize="36" Foreground="#FFEBEBEB"/>
+
+                <!-- Form nhập liệu -->
+                <StackPanel Margin="90,145,90,65">
+
+                    <DockPanel>
+                        <Label Content="Username:" FontSize="16" Width="90" Foreground="White"/>
+                        <TextBox x:Name="usernameTextBox" Height="40" Margin="0,0,0,8" Padding="8" FontSize="16"/>
+                    </DockPanel>
+
+                    <DockPanel>
+                        <Label Content="Email:" FontSize="16" Width="90" Foreground="White"/>
+                        <TextBox x:Name="emailTextBox" Height="40" Margin="0,0,0,8" Padding="8" FontSize="16"/>
+                    </DockPanel>
+
+                    <DockPanel>
+                        <Label Content="Password:" FontSize="16" Width="90" Foreground="White"/>
+                        <PasswordBox x:Name="passwordBox" Height="40" Margin="0,0,0,8" Padding="8" FontSize="16"/>
+                    </DockPanel>
+
+                    <DockPanel>
+                        <Label Content="Full Name:" FontSize="16" Width="90" Foreground="White"/>
+                        <TextBox x:Name="fullNameTextBox" Height="40" Margin="0,0,0,8" Padding="8" FontSize="16"/>
+                    </DockPanel>
+
+                    <DockPanel>
+                        <Label Content="DOB:" FontSize="16" Width="90" Foreground="White"/>
+                        <TextBox x:Name="dateOfBirthTextBox" Height="40" Margin="0,0,0,8" Padding="8" FontSize="16"/>
+                    </DockPanel>
+
+                    <DockPanel>
+                        <Label Content="Role:" FontSize="16" Width="90" Foreground="White"/>
+                        <ComboBox x:Name="roleComboBox" Height="35" FontSize="16" Margin="0,0,0,9">
+                            <ComboBoxItem Content="student" IsSelected="True"/>
+                            <ComboBoxItem Content="lecturer"/>
+                        </ComboBox>
+                    </DockPanel>
+
+                    <DockPanel>
+                        <Label Content="Phone:" FontSize="16" Width="90" Foreground="White"/>
+                        <TextBox x:Name="phoneTextBox" Height="40" Margin="0,0,0,8" Padding="8" FontSize="16"/>
+                    </DockPanel>
+
+                    <DockPanel>
+                        <Label Content="Address:" FontSize="16" Width="90" Foreground="White"/>
+                        <TextBox x:Name="addressTextBox" Height="40" Margin="0,0,0,15" Padding="8" FontSize="16"/>
+                    </DockPanel>
+
+                    <Button Content="Register" Height="40"
+                            Background="#FF0C8D9D"
+                            Foreground="White"
+                            FontSize="16"
+                            Click="RegisterButton_Click"
+                            IsDefault="True"/>
+                </StackPanel>
+
+                <!-- Điều hướng -->
+                <DockPanel HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,65">
+                    <Label Content="Already have an account?" Foreground="White"/>
+                    <Label Content=" Login." Foreground="LightBlue" Cursor="Hand" MouseDown="LoginLabel_Click"/>
+                </DockPanel>
+            </Grid>
+        </Border>
+    </Grid>
+</Window>
