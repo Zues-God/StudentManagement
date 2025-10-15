@@ -1,10 +1,10 @@
 ﻿using Microsoft.Data.SqlClient; // Hoặc System.Data.SqlClient nếu có
-using schoolManagerUser1.Models;
+using StudentManagement.Models;
 using System;
 using System.Collections.Generic;
-using schoolManagerUser1.db;
+using StudentManagement.db;
 
-namespace schoolManagerUser1.DAO
+namespace StudentManagement.DAO
 {
     public class UserDAO
     {
@@ -225,3 +225,4 @@ namespace schoolManagerUser1.DAO
 
     }
 }
+
