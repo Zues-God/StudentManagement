@@ -1,7 +1,7 @@
 ﻿using Microsoft.IdentityModel.Tokens;
-using schoolManagerUser1.DAO;
-using schoolManagerUser1.Models;
-using schoolManagerUser1.Utils;
+using StudentManagement.DAO;
+using StudentManagement.Models;
+using StudentManagement.Utils;
 using System;
 using System.Formats.Asn1;
 using System.Text.RegularExpressions;
@@ -9,7 +9,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 
-namespace schoolManagerUser1.Login_Register
+namespace StudentManagement.Login_Register
 {
     public partial class Register : Window
     {
@@ -118,3 +118,4 @@ namespace schoolManagerUser1.Login_Register
         }
     }
 }
+
