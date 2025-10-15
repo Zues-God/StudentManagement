@@ -5,8 +5,58 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:StudentManagement"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
+        Title="MainWindow" Height="400" Width="400"
+        WindowStyle="None" AllowsTransparency="True" Background="Transparent"
+        KeyDown="EnterPressed"
+        >
+    <Grid MouseLeftButtonDown="Window_MouseLeftButtonDown">
+        <Frame x:Name="MainFrame" NavigationUIVisibility="Hidden"/>
+        <Border CornerRadius="20" Margin="0" Width="400">
+            <Grid Background="#FFF2721E">
+                <Button Content="✕"
+                        Width="30" Height="30"
+                        HorizontalAlignment="Right"
+                        VerticalAlignment="Top"
+                        Background="#22FFFFFF"
+                        Foreground="White"
+                        FontSize="16"
+                        BorderThickness="0"
+                        Cursor="Hand"
+                        Click="CloseButton_Click" IsDefault="True"/>
+                <Border CornerRadius="15" Background="#8692f8" Margin="80,60,80,90"/>
+                <Label Content="LOGIN" HorizontalAlignment="Left" Margin="125,61,0,0" VerticalAlignment="Top" Height="58" Width="158" HorizontalContentAlignment="Center" FontSize="36" Foreground="#FFEBEBEB"/>
+                <StackPanel Margin="90,149,90,74">
+                    <DockPanel>
+                        <Label Content="Username:" FontSize="16" Width="80">
+                            <Label.Foreground>
+                                <RadialGradientBrush>
+                                    <GradientStop Color="White"/>
+                                    <GradientStop Color="#FFE3C6C5" Offset="0.05"/>
+                                </RadialGradientBrush>
+                            </Label.Foreground>
+                        </Label>
+                        <TextBox x:Name="usernameTextBox" Height="40" Margin="0,0,0,10" FontSize="16" Padding="10"/>
+                    </DockPanel>
+                    <DockPanel>
+                        <Label Content="Password:" FontSize="16" Width="80">
+                            <Label.Foreground>
+                                <RadialGradientBrush>
+                                    <GradientStop Color="White"/>
+                                    <GradientStop Color="LightBlue" Offset="0.05"/>
+                                </RadialGradientBrush>
+                            </Label.Foreground>
+                        </Label>
+                        <PasswordBox x:Name="passwordBox" Height="40" Margin="0,0,0,20" FontSize="16" Padding="10"/>
+                    </DockPanel>
+                    <Button Content="Login" Height="40" Background="#FFF2721E" Foreground="White" FontSize="16" Click="LoginButton_Click" IsDefault="True"/>
+                    <TextBlock HorizontalAlignment="Center" Margin="0,10,0,0" Foreground="White">
+                        <Run Text="Don't have an account? "/>
+                        <Hyperlink Click="RegisterLink_Click" Foreground="Blue" Cursor="Hand">Register</Hyperlink>
+                    </TextBlock>
+                </StackPanel>
 
+            </Grid>
+
+        </Border>
     </Grid>
 </Window>
