@@ -1,0 +1,27 @@
+﻿<Page x:Class="StudentManagement.Views.Lecture.Lecture"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:StudentManagement.Views.Lecture"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="Lecture">
+
+    <Grid Background="AntiqueWhite">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="45"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Menu Grid.Row="0" VerticalAlignment="Top"  Background="#f2721e" Height="45">
+            <MenuItem HorizontalAlignment="Center" Header="🏠" Click="ToHome"  Height="20" Margin="5,15,2,5" Background="White"/>
+            <MenuItem HorizontalAlignment="Center" Header="Profile" Click="ToProfile" Height="20" Margin="2,15,2,5" Background="White"/>
+            <MenuItem HorizontalAlignment="Center" Header="Logout" Command="{Binding LogoutCommand}" Height="20" Margin="2,15,2,5" Background="White"/>
+        </Menu>
+        <StackPanel VerticalAlignment="Center" Background="#FFF1D9D9" Grid.Row="1" Height="60" HorizontalAlignment="Center">
+            <Label Content="{Binding Text}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="36" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+        </StackPanel>
+
+        <Frame x:Name="MenuFrame" Grid.Row="1" NavigationUIVisibility="Hidden"/>
+    </Grid>
+</Page>
