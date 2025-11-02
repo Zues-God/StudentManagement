@@ -286,7 +286,7 @@ namespace StudentManagement.ViewModels
                 MessageBox.Show("Please select user to edit!", "Notification", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
-            if (SelectedUser.Id == 1)
+            if (SelectedUser.Role.ToLower().Equals("admin"))
             {
                 MessageBox.Show("You cannot perform this action on the selected user!", "Notification", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
@@ -363,7 +363,7 @@ namespace StudentManagement.ViewModels
                 MessageBox.Show("Please select user before delete!", "Notification", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
-            if (SelectedUser.Id == 1)
+            if (SelectedUser.Role.ToLower().Equals("admin"))
             {
                 MessageBox.Show("You cannot perform this action on the selected user!", "Notification", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
@@ -397,3 +397,4 @@ namespace StudentManagement.ViewModels
         }
     }
 }
+
