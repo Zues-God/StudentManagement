@@ -1,4 +1,4 @@
-﻿using System.Text.RegularExpressions;
+using System.Text.RegularExpressions;
 
 namespace StudentManagement.Helper;
 internal static class UtilClass
@@ -23,7 +23,7 @@ internal static class UtilClass
     public static bool IsValidPassword(string password)
     {
         // Tối thiểu 8 ký tự, ít nhất 1 chữ hoa, 1 chữ thường, 1 số và 1 ký tự đặc biệt
-        string pattern = @"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$";
+        string pattern = @"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[#^@$!%*?&])[A-Za-z\d#^@$!%*?&]{8,}$";
         return !string.IsNullOrEmpty(password) && Regex.IsMatch(password, pattern);
     }
 
