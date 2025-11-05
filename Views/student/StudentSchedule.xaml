@@ -1,0 +1,38 @@
+﻿<Window x:Class="StudentManagement.Views.Student.StudentSchedule"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="📘 My Schedule"
+        Width="900" Height="600"
+        WindowStartupLocation="CenterScreen"
+        Background="#F8FAFC">
+
+    <Border Background="White" CornerRadius="10" Padding="20" Margin="20"
+            BorderBrush="#CBD5E1" BorderThickness="1">
+        <StackPanel>
+            <TextBlock Text="MY CLASS SCHEDULE"
+                       FontSize="24"
+                       FontWeight="Bold"
+                       Foreground="#2563EB"
+                       HorizontalAlignment="Center"
+                       Margin="0,0,0,20"/>
+
+            <DataGrid x:Name="dgStudentSchedule"
+                      AutoGenerateColumns="False"
+                      IsReadOnly="True"
+                      CanUserAddRows="False"
+                      AlternatingRowBackground="#EFF6FF"
+                      HeadersVisibility="Column"
+                      GridLinesVisibility="None"
+                      BorderThickness="0"
+                      RowHeaderWidth="0">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Course" Binding="{Binding CourseName}" Width="*"/>
+                    <DataGridTextColumn Header="Day" Binding="{Binding DayOfWeek}" Width="120"/>
+                    <DataGridTextColumn Header="Slot" Binding="{Binding SlotId}" Width="80"/>
+                    <DataGridTextColumn Header="Room" Binding="{Binding Room}" Width="120"/>
+                    <DataGridTextColumn Header="Notes" Binding="{Binding Notes}" Width="200"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </StackPanel>
+    </Border>
+</Window>
