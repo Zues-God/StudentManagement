@@ -162,7 +162,21 @@ namespace StudentManagement.ViewModels
                 FullName = FullName ?? "";
                 Phone = Phone ?? "";
                 Address = Address ?? "";
-                User user = new User(Username, Password, Email, Role, FullName, DateOfBirth, Phone, Address);
+                User user = new User
+                {
+                    Username = Username,
+                    Password = Password,
+                    Email = Email,
+                    Role = Role,
+                    FullName = FullName,
+                    DateOfBirth = DateOfBirth,
+                    Phone = Phone,
+                    Address = Address,
+                    IsActive = true,
+                    CreatedAt = DateTime.Now,
+                    UpdatedAt = DateTime.Now
+                };
+
 
                 using (var db = new AppDbContext())
                 {
