@@ -4,15 +4,15 @@
 winexe
 C#
 .cs
-D:\SE1902_Ky5\PRN212\Project\StudentManagement-master\obj\Debug\net8.0-windows\
+D:\SE1902_Ky5\PRN212\Project\StudentManagement\obj\Debug\net8.0-windows\
 StudentManagement
 none
 false
 TRACE;DEBUG;NET;NET8_0;NETCOREAPP;WINDOWS;WINDOWS7_0;NET5_0_OR_GREATER;NET6_0_OR_GREATER;NET7_0_OR_GREATER;NET8_0_OR_GREATER;NETCOREAPP3_0_OR_GREATER;NETCOREAPP3_1_OR_GREATER;WINDOWS7_0_OR_GREATER
-D:\SE1902_Ky5\PRN212\Project\StudentManagement-master\App.xaml
+D:\SE1902_Ky5\PRN212\Project\StudentManagement\App.xaml
 12-1996735770
 
-39-1337813433
+41-1842560006
 2281329572966
 MainWindow.xaml;Views\Admin\Admin.xaml;Views\Admin\ScheduleManagement.xaml;Views\Admin\UserManagement.xaml;Views\Home.xaml;Views\Lecture\Lecture.xaml;Views\Lecture\LecturerSchedule.xaml;Views\Login.xaml;Views\ProfilePage.xaml;Views\Register.xaml;Views\student\Student.xaml;Views\student\StudentSchedule.xaml;
 
