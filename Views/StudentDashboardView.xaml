@@ -1,0 +1,258 @@
+<Window x:Class="StudentManagement.Views.StudentDashboardView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:vm="clr-namespace:StudentManagement.ViewModels"
+        Title="Student Dashboard" Height="800" Width="1400"
+        WindowStartupLocation="CenterScreen"
+        WindowState="Maximized"
+        Background="{DynamicResource MaterialDesignPaper}">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- AppBar -->
+        <materialDesign:ColorZone Grid.Row="0" 
+                                  Padding="20,15"
+                                  Mode="PrimaryDark"
+                                  VerticalAlignment="Top">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <StackPanel Grid.Column="0" Orientation="Horizontal">
+                    <materialDesign:PackIcon Kind="School" 
+                                             Width="32" 
+                                             Height="32" 
+                                             VerticalAlignment="Center"
+                                             Foreground="White"
+                                             Margin="0,0,15,0"/>
+                    <TextBlock Text="Student Dashboard" 
+                               FontSize="24" 
+                               FontWeight="Bold" 
+                               VerticalAlignment="Center"
+                               Foreground="White"/>
+                </StackPanel>
+                <TextBox Grid.Column="1"
+                         materialDesign:HintAssist.Hint="Search courses..."
+                         materialDesign:HintAssist.IsFloating="False"
+                         Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}"
+                         FontSize="14"
+                         MaxWidth="400"
+                         Margin="20,0"
+                         HorizontalAlignment="Right">
+                    <TextBox.Style>
+                        <Style TargetType="TextBox" BasedOn="{StaticResource MaterialDesignOutlinedTextBox}">
+                            <Setter Property="Background" Value="White"/>
+                            <Setter Property="Foreground" Value="Black"/>
+                        </Style>
+                    </TextBox.Style>
+                </TextBox>
+                <materialDesign:PackIcon Grid.Column="2"
+                                         Kind="Magnify"
+                                         Width="24"
+                                         Height="24"
+                                         VerticalAlignment="Center"
+                                         Foreground="White"
+                                         Margin="0,0,15,0"/>
+                <Button Grid.Column="3"
+                        Content="LOGOUT"
+                        Command="{Binding LogoutCommand}"
+                        Style="{StaticResource MaterialDesignFlatButton}"
+                        Foreground="White"
+                        FontSize="14"/>
+            </Grid>
+        </materialDesign:ColorZone>
+
+        <!-- Main Content -->
+        <TabControl Grid.Row="1" 
+                    Margin="20"
+                    Style="{StaticResource MaterialDesignFilledTabControl}">
+            <TabItem Header="My Courses">
+                <Grid Margin="10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="350"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    
+                    <!-- Courses List -->
+                    <materialDesign:Card Grid.Column="0" 
+                                        Padding="15" 
+                                        Margin="0,0,15,0"
+                                        materialDesign:ShadowAssist.ShadowDepth="Depth1">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <TextBlock Grid.Row="0" 
+                                       Text="My Courses" 
+                                       FontWeight="Bold" 
+                                       FontSize="18"
+                                       Margin="0,0,0,15"/>
+                            <DataGrid Grid.Row="1" 
+                                      ItemsSource="{Binding FilteredCourses}" 
+                                      SelectedItem="{Binding SelectedCourse}"
+                                      SelectionChanged="CoursesGrid_SelectionChanged"
+                                      Style="{StaticResource MaterialDesignDataGrid}"
+                                      materialDesign:DataGridAssist.CellPadding="13,8,8,8"
+                                      materialDesign:DataGridAssist.ColumnHeaderPadding="8">
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Header="Course" Binding="{Binding CourseName}" Width="*"/>
+                                </DataGrid.Columns>
+                            </DataGrid>
+                        </Grid>
+                    </materialDesign:Card>
+
+                    <!-- Grades Section -->
+                    <materialDesign:Card Grid.Column="1" 
+                                        Padding="15"
+                                        materialDesign:ShadowAssist.ShadowDepth="Depth1">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <TextBlock Grid.Row="0" 
+                                       Text="My Grades" 
+                                       FontWeight="Bold" 
+                                       FontSize="18"
+                                       Margin="0,0,0,15"/>
+                            <DataGrid Grid.Row="1" 
+                                      ItemsSource="{Binding CurrentCourseGrades}"
+                                      Style="{StaticResource MaterialDesignDataGrid}"
+                                      materialDesign:DataGridAssist.CellPadding="13,8,8,8"
+                                      materialDesign:DataGridAssist.ColumnHeaderPadding="8">
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Header="Type" Binding="{Binding GradeType}" Width="120"/>
+                                    <DataGridTextColumn Header="Value" Binding="{Binding Value}" Width="100"/>
+                                    <DataGridTextColumn Header="Letter" Binding="{Binding LetterGrade}" Width="100"/>
+                                    <DataGridTextColumn Header="Notes" Binding="{Binding Notes}" Width="*"/>
+                                </DataGrid.Columns>
+                            </DataGrid>
+                        </Grid>
+                    </materialDesign:Card>
+                </Grid>
+            </TabItem>
+
+            <TabItem Header="Course Registration">
+                <Grid Margin="10">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Row="0"
+                               Text="Available Courses"
+                               FontSize="18"
+                               FontWeight="Bold"
+                               Margin="0,0,0,15"/>
+                    <DataGrid Grid.Row="1"
+                              ItemsSource="{Binding AvailableCourses}"
+                              SelectedItem="{Binding SelectedAvailableCourse}"
+                              AutoGenerateColumns="False"
+                              Style="{StaticResource MaterialDesignDataGrid}"
+                              materialDesign:DataGridAssist.CellPadding="13,8,8,8"
+                              materialDesign:DataGridAssist.ColumnHeaderPadding="8">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Code" Binding="{Binding Code}" Width="Auto"/>
+                            <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="*"/>
+                            <DataGridTextColumn Header="Credits" Binding="{Binding Credits}" Width="Auto"/>
+                            <DataGridTextColumn Header="Instructor" Binding="{Binding InstructorName}" Width="Auto"/>
+                            <DataGridTemplateColumn Width="Auto">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Button Content="ENROLL"
+                                                Click="EnrollButton_Click"
+                                                CommandParameter="{Binding}"
+                                                Style="{StaticResource MaterialDesignRaisedButton}"
+                                                Padding="10,5"/>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+            </TabItem>
+
+            <TabItem Header="Grade Statistics">
+                <Grid Margin="20">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="0,0,0,30">
+                        <materialDesign:Card Padding="20" Margin="10" materialDesign:ShadowAssist.ShadowDepth="Depth2">
+                            <StackPanel>
+                                <TextBlock Text="Average Grade"
+                                           FontSize="16"
+                                           Foreground="{DynamicResource MaterialDesignBodyLight}"
+                                           Margin="0,0,0,10"/>
+                                <TextBlock FontSize="36"
+                                           FontWeight="Bold"
+                                           HorizontalAlignment="Center">
+                                    <TextBlock.Style>
+                                        <Style TargetType="TextBlock">
+                                            <Setter Property="Text" Value="{Binding AverageGrade, StringFormat='{}{0:F2}'}"/>
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding AverageGrade}" Value="0">
+                                                    <Setter Property="Text" Value="N/A"/>
+                                                    <Setter Property="Foreground" Value="{DynamicResource MaterialDesignBodyLight}"/>
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </TextBlock.Style>
+                                </TextBlock>
+                            </StackPanel>
+                        </materialDesign:Card>
+                        <materialDesign:Card Padding="20" Margin="10" materialDesign:ShadowAssist.ShadowDepth="Depth2">
+                            <StackPanel>
+                                <TextBlock Text="Total Courses"
+                                           FontSize="16"
+                                           Foreground="{DynamicResource MaterialDesignBodyLight}"
+                                           Margin="0,0,0,10"/>
+                                <TextBlock Text="{Binding MyCourses.Count}"
+                                           FontSize="36"
+                                           FontWeight="Bold"
+                                           HorizontalAlignment="Center"/>
+                            </StackPanel>
+                        </materialDesign:Card>
+                    </StackPanel>
+                    <DataGrid Grid.Row="1"
+                              ItemsSource="{Binding MyGrades}"
+                              AutoGenerateColumns="False"
+                              Style="{StaticResource MaterialDesignDataGrid}"
+                              materialDesign:DataGridAssist.CellPadding="13,8,8,8"
+                              materialDesign:DataGridAssist.ColumnHeaderPadding="8">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Course" Binding="{Binding CourseName}" Width="*"/>
+                            <DataGridTextColumn Header="Type" Binding="{Binding GradeType}" Width="Auto"/>
+                            <DataGridTextColumn Header="Value" Binding="{Binding Value}" Width="Auto"/>
+                            <DataGridTextColumn Header="Letter" Binding="{Binding LetterGrade}" Width="Auto"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+            </TabItem>
+
+            <TabItem Header="My Schedules">
+                <DataGrid ItemsSource="{Binding MySchedules}"
+                          Style="{StaticResource MaterialDesignDataGrid}"
+                          materialDesign:DataGridAssist.CellPadding="13,8,8,8"
+                          materialDesign:DataGridAssist.ColumnHeaderPadding="8"
+                          Margin="10">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Course" Binding="{Binding CourseName}" Width="*"/>
+                        <DataGridTextColumn Header="Day" Binding="{Binding DayOfWeek}" Width="120"/>
+                        <DataGridTextColumn Header="Slot" Binding="{Binding SlotName}" Width="120"/>
+                        <DataGridTextColumn Header="Room" Binding="{Binding Room}" Width="120"/>
+                        <DataGridTextColumn Header="Notes" Binding="{Binding Notes}" Width="*"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</Window>

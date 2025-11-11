@@ -1,0 +1,515 @@
+<Window x:Class="StudentManagement.Views.AdminDashboardView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:vm="clr-namespace:StudentManagement.ViewModels"
+        Title="Admin Dashboard" Height="800" Width="1400"
+        WindowStartupLocation="CenterScreen"
+        WindowState="Maximized"
+        Background="{DynamicResource MaterialDesignPaper}">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- AppBar -->
+        <materialDesign:ColorZone Grid.Row="0" 
+                                  Padding="20,15"
+                                  Mode="PrimaryDark"
+                                  VerticalAlignment="Top">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <StackPanel Grid.Column="0" Orientation="Horizontal">
+                    <materialDesign:PackIcon Kind="ShieldAccount" 
+                                             Width="32" 
+                                             Height="32" 
+                                             VerticalAlignment="Center"
+                                             Foreground="White"
+                                             Margin="0,0,15,0"/>
+                    <TextBlock Text="Admin Dashboard" 
+                               FontSize="24" 
+                               FontWeight="Bold" 
+                               VerticalAlignment="Center"
+                               Foreground="White"/>
+                </StackPanel>
+                <TextBox Grid.Column="1"
+                         materialDesign:HintAssist.Hint="Search..."
+                         materialDesign:HintAssist.IsFloating="False"
+                         Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}"
+                         FontSize="14"
+                         MaxWidth="400"
+                         Margin="20,0"
+                         HorizontalAlignment="Right">
+                    <TextBox.Style>
+                        <Style TargetType="TextBox" BasedOn="{StaticResource MaterialDesignOutlinedTextBox}">
+                            <Setter Property="Background" Value="White"/>
+                            <Setter Property="Foreground" Value="Black"/>
+                        </Style>
+                    </TextBox.Style>
+                </TextBox>
+                <materialDesign:PackIcon Grid.Column="2"
+                                         Kind="Magnify"
+                                         Width="24"
+                                         Height="24"
+                                         VerticalAlignment="Center"
+                                         Foreground="White"
+                                         Margin="0,0,15,0"/>
+                <Button Grid.Column="3"
+                        Content="LOGOUT"
+                        Command="{Binding LogoutCommand}"
+                        Style="{StaticResource MaterialDesignFlatButton}"
+                        Foreground="White"
+                        FontSize="14"/>
+            </Grid>
+        </materialDesign:ColorZone>
+
+        <!-- Main Content -->
+        <TabControl Grid.Row="1" 
+                    Margin="20"
+                    Style="{StaticResource MaterialDesignFilledTabControl}">
+            <TabItem Header="Dashboard">
+                <Grid Margin="20">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Row="0"
+                               Text="System Overview"
+                               FontSize="28"
+                               FontWeight="Bold"
+                               Margin="0,0,0,30"/>
+                    <UniformGrid Grid.Row="1"
+                                 Columns="3"
+                                 Rows="2">
+                        <materialDesign:Card Margin="10"
+                                             Padding="20"
+                                             materialDesign:ShadowAssist.ShadowDepth="Depth2">
+                            <StackPanel>
+                                <materialDesign:PackIcon Kind="BookOpen"
+                                                         Width="48"
+                                                         Height="48"
+                                                         Foreground="{DynamicResource PrimaryHueMidBrush}"
+                                                         HorizontalAlignment="Center"
+                                                         Margin="0,0,0,10"/>
+                                <TextBlock Text="{Binding TotalCourses}"
+                                           FontSize="36"
+                                           FontWeight="Bold"
+                                           HorizontalAlignment="Center"
+                                           Margin="0,0,0,5"/>
+                                <TextBlock Text="Total Courses"
+                                           FontSize="16"
+                                           HorizontalAlignment="Center"
+                                           Foreground="{DynamicResource MaterialDesignBodyLight}"/>
+                            </StackPanel>
+                        </materialDesign:Card>
+                        <materialDesign:Card Margin="10"
+                                             Padding="20"
+                                             materialDesign:ShadowAssist.ShadowDepth="Depth2">
+                            <StackPanel>
+                                <materialDesign:PackIcon Kind="Account"
+                                                         Width="48"
+                                                         Height="48"
+                                                         Foreground="{DynamicResource PrimaryHueMidBrush}"
+                                                         HorizontalAlignment="Center"
+                                                         Margin="0,0,0,10"/>
+                                <TextBlock Text="{Binding TotalStudents}"
+                                           FontSize="36"
+                                           FontWeight="Bold"
+                                           HorizontalAlignment="Center"
+                                           Margin="0,0,0,5"/>
+                                <TextBlock Text="Total Students"
+                                           FontSize="16"
+                                           HorizontalAlignment="Center"
+                                           Foreground="{DynamicResource MaterialDesignBodyLight}"/>
+                            </StackPanel>
+                        </materialDesign:Card>
+                        <materialDesign:Card Margin="10"
+                                             Padding="20"
+                                             materialDesign:ShadowAssist.ShadowDepth="Depth2">
+                            <StackPanel>
+                                <materialDesign:PackIcon Kind="AccountTie"
+                                                         Width="48"
+                                                         Height="48"
+                                                         Foreground="{DynamicResource PrimaryHueMidBrush}"
+                                                         HorizontalAlignment="Center"
+                                                         Margin="0,0,0,10"/>
+                                <TextBlock Text="{Binding TotalLecturers}"
+                                           FontSize="36"
+                                           FontWeight="Bold"
+                                           HorizontalAlignment="Center"
+                                           Margin="0,0,0,5"/>
+                                <TextBlock Text="Total Lecturers"
+                                           FontSize="16"
+                                           HorizontalAlignment="Center"
+                                           Foreground="{DynamicResource MaterialDesignBodyLight}"/>
+                            </StackPanel>
+                        </materialDesign:Card>
+                        <materialDesign:Card Margin="10"
+                                             Padding="20"
+                                             materialDesign:ShadowAssist.ShadowDepth="Depth2">
+                            <StackPanel>
+                                <materialDesign:PackIcon Kind="AccountPlus"
+                                                         Width="48"
+                                                         Height="48"
+                                                         Foreground="{DynamicResource PrimaryHueMidBrush}"
+                                                         HorizontalAlignment="Center"
+                                                         Margin="0,0,0,10"/>
+                                <TextBlock Text="{Binding TotalEnrollments}"
+                                           FontSize="36"
+                                           FontWeight="Bold"
+                                           HorizontalAlignment="Center"
+                                           Margin="0,0,0,5"/>
+                                <TextBlock Text="Total Enrollments"
+                                           FontSize="16"
+                                           HorizontalAlignment="Center"
+                                           Foreground="{DynamicResource MaterialDesignBodyLight}"/>
+                            </StackPanel>
+                        </materialDesign:Card>
+                        <materialDesign:Card Margin="10"
+                                             Padding="20"
+                                             materialDesign:ShadowAssist.ShadowDepth="Depth2">
+                            <StackPanel>
+                                <materialDesign:PackIcon Kind="Calendar"
+                                                         Width="48"
+                                                         Height="48"
+                                                         Foreground="{DynamicResource PrimaryHueMidBrush}"
+                                                         HorizontalAlignment="Center"
+                                                         Margin="0,0,0,10"/>
+                                <TextBlock Text="{Binding TotalSchedules}"
+                                           FontSize="36"
+                                           FontWeight="Bold"
+                                           HorizontalAlignment="Center"
+                                           Margin="0,0,0,5"/>
+                                <TextBlock Text="Total Schedules"
+                                           FontSize="16"
+                                           HorizontalAlignment="Center"
+                                           Foreground="{DynamicResource MaterialDesignBodyLight}"/>
+                            </StackPanel>
+                        </materialDesign:Card>
+                    </UniformGrid>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Courses">
+                <Grid Margin="10">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <StackPanel Grid.Row="0" 
+                                Orientation="Horizontal" 
+                                Margin="0,0,0,15">
+                        <Button Content="ADD COURSE" 
+                                Command="{Binding ShowCourseDialogCommand}"
+                                Style="{StaticResource MaterialDesignRaisedButton}"
+                                Margin="0,0,10,0"/>
+                        <Button Content="EDIT" 
+                                Command="{Binding SaveCourseCommand}" 
+                                Style="{StaticResource MaterialDesignOutlinedButton}"
+                                IsEnabled="{Binding SelectedCourse, Converter={StaticResource NullToBoolConverter}}"
+                                Margin="0,0,10,0"/>
+                        <Button Content="ASSIGN INSTRUCTOR" 
+                                Command="{Binding AssignInstructorCommand}"
+                                Style="{StaticResource MaterialDesignRaisedButton}"
+                                IsEnabled="{Binding SelectedCourse, Converter={StaticResource NullToBoolConverter}}"
+                                Margin="0,0,10,0"/>
+                        <Button Content="DELETE" 
+                                Command="{Binding DeleteCourseCommand}" 
+                                Style="{StaticResource MaterialDesignOutlinedButton}"
+                                IsEnabled="{Binding SelectedCourse, Converter={StaticResource NullToBoolConverter}}"/>
+                    </StackPanel>
+                    <DataGrid Grid.Row="1" 
+                              ItemsSource="{Binding FilteredCourses}" 
+                              SelectedItem="{Binding SelectedCourse}" 
+                              AutoGenerateColumns="False"
+                              Style="{StaticResource MaterialDesignDataGrid}"
+                              materialDesign:DataGridAssist.CellPadding="13,8,8,8"
+                              materialDesign:DataGridAssist.ColumnHeaderPadding="8">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Code" Binding="{Binding Code}" Width="100"/>
+                            <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="*"/>
+                            <DataGridTextColumn Header="Credits" Binding="{Binding Credits}" Width="80"/>
+                            <DataGridTextColumn Header="Instructor" Binding="{Binding InstructorName}" Width="200">
+                                <DataGridTextColumn.ElementStyle>
+                                    <Style TargetType="TextBlock">
+                                        <Setter Property="Text" Value="{Binding InstructorName}"/>
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding InstructorName}" Value="{x:Null}">
+                                                <Setter Property="Text" Value="Not Assigned"/>
+                                                <Setter Property="FontStyle" Value="Italic"/>
+                                                <Setter Property="Foreground" Value="{DynamicResource MaterialDesignBodyLight}"/>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </DataGridTextColumn.ElementStyle>
+                            </DataGridTextColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+            </TabItem>
+
+            <TabItem Header="Enrollments">
+                <Grid Margin="10">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <StackPanel Grid.Row="0" 
+                                Orientation="Horizontal" 
+                                Margin="0,0,0,15">
+                        <Button Content="ADD ENROLLMENT" 
+                                Command="{Binding ShowEnrollmentDialogCommand}"
+                                Style="{StaticResource MaterialDesignRaisedButton}"
+                                Margin="0,0,10,0"/>
+                        <Button Content="BULK ENROLLMENT" 
+                                Command="{Binding BulkEnrollStudentsCommand}"
+                                Style="{StaticResource MaterialDesignRaisedButton}"
+                                Margin="0,0,10,0"/>
+                        <Button Content="DELETE" 
+                                Command="{Binding DeleteEnrollmentCommand}" 
+                                Style="{StaticResource MaterialDesignOutlinedButton}"
+                                IsEnabled="{Binding SelectedEnrollment, Converter={StaticResource NullToBoolConverter}}"/>
+                    </StackPanel>
+                    <DataGrid Grid.Row="1" 
+                              ItemsSource="{Binding FilteredEnrollments}" 
+                              SelectedItem="{Binding SelectedEnrollment}"
+                              Style="{StaticResource MaterialDesignDataGrid}"
+                              materialDesign:DataGridAssist.CellPadding="13,8,8,8"
+                              materialDesign:DataGridAssist.ColumnHeaderPadding="8">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Course" Binding="{Binding CourseName}" Width="*"/>
+                            <DataGridTextColumn Header="Student" Binding="{Binding StudentName}" Width="*"/>
+                            <DataGridTextColumn Header="Email" Binding="{Binding StudentEmail}" Width="*"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+            </TabItem>
+
+            <TabItem Header="Schedules">
+                <Grid Margin="10">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <StackPanel Grid.Row="0" 
+                                Orientation="Horizontal" 
+                                Margin="0,0,0,15">
+                        <Button Content="ADD SCHEDULE" 
+                                Command="{Binding ShowScheduleDialogCommand}"
+                                Style="{StaticResource MaterialDesignRaisedButton}"
+                                Margin="0,0,10,0"/>
+                        <Button Content="EDIT" 
+                                Command="{Binding SaveScheduleCommand}" 
+                                Style="{StaticResource MaterialDesignOutlinedButton}"
+                                IsEnabled="{Binding SelectedSchedule, Converter={StaticResource NullToBoolConverter}}"
+                                Margin="0,0,10,0"/>
+                        <Button Content="DELETE" 
+                                Command="{Binding DeleteScheduleCommand}" 
+                                Style="{StaticResource MaterialDesignOutlinedButton}"
+                                IsEnabled="{Binding SelectedSchedule, Converter={StaticResource NullToBoolConverter}}"/>
+                    </StackPanel>
+                    <DataGrid Grid.Row="1" 
+                              ItemsSource="{Binding FilteredSchedules}" 
+                              SelectedItem="{Binding SelectedSchedule}"
+                              Style="{StaticResource MaterialDesignDataGrid}"
+                              materialDesign:DataGridAssist.CellPadding="13,8,8,8"
+                              materialDesign:DataGridAssist.ColumnHeaderPadding="8">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Course" Binding="{Binding CourseName}" Width="*"/>
+                            <DataGridTextColumn Header="Day" Binding="{Binding DayOfWeek}" Width="120"/>
+                            <DataGridTextColumn Header="Slot" Binding="{Binding SlotName}" Width="120"/>
+                            <DataGridTextColumn Header="Room" Binding="{Binding Room}" Width="120"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+            </TabItem>
+
+            <TabItem Header="Teacher Assignments">
+                <Grid Margin="10">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <StackPanel Grid.Row="0" 
+                                Orientation="Horizontal" 
+                                Margin="0,0,0,15">
+                        <Button Content="ASSIGN INSTRUCTOR" 
+                                Command="{Binding AssignInstructorCommand}"
+                                Style="{StaticResource MaterialDesignRaisedButton}"
+                                IsEnabled="{Binding SelectedCourse, Converter={StaticResource NullToBoolConverter}}"
+                                Margin="0,0,10,0"/>
+                        <Button Content="CHANGE INSTRUCTOR" 
+                                Command="{Binding AssignInstructorCommand}"
+                                Style="{StaticResource MaterialDesignOutlinedButton}"
+                                IsEnabled="{Binding SelectedCourse, Converter={StaticResource NullToBoolConverter}}"
+                                Margin="0,0,10,0"/>
+                        <Button Content="REMOVE INSTRUCTOR" 
+                                Command="{Binding RemoveInstructorCommand}"
+                                Style="{StaticResource MaterialDesignOutlinedButton}"
+                                IsEnabled="{Binding SelectedCourse, Converter={StaticResource NullToBoolConverter}}"/>
+                    </StackPanel>
+                    <StackPanel Grid.Row="1" 
+                                Orientation="Horizontal" 
+                                Margin="0,0,0,15">
+                        <TextBlock Text="Filter by Instructor:"
+                                   VerticalAlignment="Center"
+                                   Margin="0,0,10,0"
+                                   FontSize="14"/>
+                        <ComboBox x:Name="InstructorFilterComboBox"
+                                  Width="250"
+                                  materialDesign:HintAssist.Hint="All Instructors"
+                                  Style="{StaticResource MaterialDesignOutlinedComboBox}"
+                                  SelectionChanged="InstructorFilterComboBox_SelectionChanged">
+                            <ComboBoxItem Content="All Instructors" Tag=""/>
+                        </ComboBox>
+                    </StackPanel>
+                    <DataGrid Grid.Row="2" 
+                              ItemsSource="{Binding FilteredCoursesForAssignment}"
+                              SelectedItem="{Binding SelectedCourse}"
+                              AutoGenerateColumns="False"
+                              Style="{StaticResource MaterialDesignDataGrid}"
+                              materialDesign:DataGridAssist.CellPadding="13,8,8,8"
+                              materialDesign:DataGridAssist.ColumnHeaderPadding="8">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Course Code" Binding="{Binding Code}" Width="120"/>
+                            <DataGridTextColumn Header="Course Name" Binding="{Binding Name}" Width="*"/>
+                            <DataGridTextColumn Header="Credits" Binding="{Binding Credits}" Width="80"/>
+                            <DataGridTextColumn Header="Current Instructor" Binding="{Binding InstructorName}" Width="250">
+                                <DataGridTextColumn.ElementStyle>
+                                    <Style TargetType="TextBlock">
+                                        <Setter Property="Text" Value="{Binding InstructorName}"/>
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding InstructorName}" Value="{x:Null}">
+                                                <Setter Property="Text" Value="Not Assigned"/>
+                                                <Setter Property="FontStyle" Value="Italic"/>
+                                                <Setter Property="Foreground" Value="{DynamicResource MaterialDesignValidationErrorBrush}"/>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </DataGridTextColumn.ElementStyle>
+                            </DataGridTextColumn>
+                            <DataGridTemplateColumn Header="Action" Width="Auto">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Button Content="ASSIGN"
+                                                Click="QuickAssignButton_Click"
+                                                CommandParameter="{Binding}"
+                                                Style="{StaticResource MaterialDesignRaisedButton}"
+                                                Padding="10,5"
+                                                FontSize="12"/>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+            </TabItem>
+
+            <TabItem Header="Time Slots">
+                <Grid Margin="10">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <StackPanel Grid.Row="0" 
+                                Orientation="Horizontal" 
+                                Margin="0,0,0,15">
+                        <Button Content="ADD SLOT" 
+                                Command="{Binding ShowSlotDialogCommand}"
+                                Style="{StaticResource MaterialDesignRaisedButton}"
+                                Margin="0,0,10,0"/>
+                        <Button Content="EDIT" 
+                                Command="{Binding ShowSlotDialogCommand}"
+                                Style="{StaticResource MaterialDesignOutlinedButton}"
+                                Margin="0,0,10,0"
+                                IsEnabled="{Binding SelectedSlot, Converter={StaticResource NullToBoolConverter}}"/>
+                        <Button Content="DELETE" 
+                                Command="{Binding DeleteSlotCommand}" 
+                                Style="{StaticResource MaterialDesignOutlinedButton}"
+                                IsEnabled="{Binding SelectedSlot, Converter={StaticResource NullToBoolConverter}}"/>
+                    </StackPanel>
+                    <DataGrid Grid.Row="1" 
+                              ItemsSource="{Binding Slots}" 
+                              SelectedItem="{Binding SelectedSlot}"
+                              AutoGenerateColumns="False"
+                              Style="{StaticResource MaterialDesignDataGrid}"
+                              materialDesign:DataGridAssist.CellPadding="13,8,8,8"
+                              materialDesign:DataGridAssist.ColumnHeaderPadding="8">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="*"/>
+                            <DataGridTextColumn Header="Start Time" Binding="{Binding StartTime, StringFormat='{}{0:hh\\:mm}'}" Width="Auto"/>
+                            <DataGridTextColumn Header="End Time" Binding="{Binding EndTime, StringFormat='{}{0:hh\\:mm}'}" Width="Auto"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+            </TabItem>
+
+            <TabItem Header="Users">
+                <Grid Margin="10">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <StackPanel Grid.Row="0" 
+                                Orientation="Horizontal" 
+                                Margin="0,0,0,15">
+                        <TextBlock Text="Role:" 
+                                   VerticalAlignment="Center" 
+                                   Margin="0,0,10,0"
+                                   FontSize="14"/>
+                        <ComboBox x:Name="RoleComboBox" 
+                                  Width="150" 
+                                  Margin="0,0,10,0"
+                                  SelectionChanged="RoleComboBox_SelectionChanged"
+                                  Style="{StaticResource MaterialDesignOutlinedComboBox}">
+                            <ComboBoxItem Content="student"/>
+                            <ComboBoxItem Content="lecture"/>
+                            <ComboBoxItem Content="admin"/>
+                        </ComboBox>
+                        <Button Content="UPDATE ROLE" 
+                                Command="{Binding UpdateUserRoleCommand}" 
+                                Style="{StaticResource MaterialDesignRaisedButton}"
+                                IsEnabled="{Binding SelectedUser, Converter={StaticResource NullToBoolConverter}}" 
+                                Margin="0,0,10,0"/>
+                        <Button Content="DELETE USER" 
+                                Command="{Binding DeleteUserCommand}" 
+                                Style="{StaticResource MaterialDesignOutlinedButton}"
+                                IsEnabled="{Binding SelectedUser, Converter={StaticResource NullToBoolConverter}}"/>
+                    </StackPanel>
+                    <TextBlock Grid.Row="1" 
+                               Text="Select a user and change role above, then click Update Role" 
+                               FontStyle="Italic" 
+                               Margin="0,0,0,10" 
+                               Foreground="{DynamicResource MaterialDesignBodyLight}"
+                               FontSize="12"/>
+                    <DataGrid Grid.Row="2" 
+                              ItemsSource="{Binding FilteredUsers}" 
+                              SelectedItem="{Binding SelectedUser}"
+                              Style="{StaticResource MaterialDesignDataGrid}"
+                              materialDesign:DataGridAssist.CellPadding="13,8,8,8"
+                              materialDesign:DataGridAssist.ColumnHeaderPadding="8">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Username" Binding="{Binding Username}" Width="*"/>
+                            <DataGridTextColumn Header="Email" Binding="{Binding Email}" Width="*"/>
+                            <DataGridTextColumn Header="Full Name" Binding="{Binding FullName}" Width="*"/>
+                            <DataGridTextColumn Header="Role" Binding="{Binding Role}" Width="120"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+            </TabItem>
+        </TabControl>
+
+        <!-- Status Bar -->
+        <materialDesign:Snackbar Grid.Row="2" 
+                                 MessageQueue="{materialDesign:MessageQueue}"
+                                 x:Name="StatusSnackbar"/>
+    </Grid>
+</Window>

@@ -1,0 +1,89 @@
+<Window x:Class="StudentManagement.Views.ScheduleDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        Title="Schedule" Height="550" Width="600"
+        WindowStartupLocation="CenterOwner"
+        ResizeMode="CanResize"
+        WindowStyle="SingleBorderWindow"
+        materialDesign:ShadowAssist.ShadowDepth="Depth3"
+        Background="{DynamicResource MaterialDesignPaper}">
+    <Grid Margin="30">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Row="0" 
+                   Text="Schedule Information" 
+                   FontSize="24" 
+                   FontWeight="Bold" 
+                   Margin="0,0,0,25"/>
+
+        <ComboBox Grid.Row="1" 
+                  x:Name="CourseComboBox" 
+                  materialDesign:HintAssist.Hint="Select Course"
+                  materialDesign:HintAssist.IsFloating="True"
+                  Style="{StaticResource MaterialDesignOutlinedComboBox}"
+                  FontSize="16"
+                  DisplayMemberPath="Name"
+                  Margin="0,0,0,20"/>
+
+        <ComboBox Grid.Row="2" 
+                  x:Name="DayOfWeekComboBox" 
+                  materialDesign:HintAssist.Hint="Day of Week"
+                  materialDesign:HintAssist.IsFloating="True"
+                  Style="{StaticResource MaterialDesignOutlinedComboBox}"
+                  FontSize="16"
+                  Margin="0,0,0,20">
+            <ComboBoxItem Content="Monday"/>
+            <ComboBoxItem Content="Tuesday"/>
+            <ComboBoxItem Content="Wednesday"/>
+            <ComboBoxItem Content="Thursday"/>
+            <ComboBoxItem Content="Friday"/>
+            <ComboBoxItem Content="Saturday"/>
+            <ComboBoxItem Content="Sunday"/>
+        </ComboBox>
+
+        <ComboBox Grid.Row="3" 
+                  x:Name="SlotComboBox" 
+                  materialDesign:HintAssist.Hint="Select Time Slot"
+                  materialDesign:HintAssist.IsFloating="True"
+                  Style="{StaticResource MaterialDesignOutlinedComboBox}"
+                  FontSize="16"
+                  DisplayMemberPath="Name"
+                  Margin="0,0,0,20"/>
+
+        <TextBox Grid.Row="4" 
+                 x:Name="RoomTextBox" 
+                 materialDesign:HintAssist.Hint="Room (Optional)"
+                 materialDesign:HintAssist.IsFloating="True"
+                 Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                 FontSize="16"
+                 Margin="0,0,0,20"/>
+
+        <StackPanel Grid.Row="7" 
+                    Orientation="Horizontal" 
+                    HorizontalAlignment="Right" 
+                    Margin="0,20,0,0">
+            <Button Content="SAVE" 
+                    x:Name="SaveButton" 
+                    Click="SaveButton_Click" 
+                    Style="{StaticResource MaterialDesignRaisedButton}"
+                    Width="120" 
+                    Height="40"
+                    Margin="0,0,10,0"/>
+            <Button Content="CANCEL" 
+                    Click="CancelButton_Click" 
+                    Style="{StaticResource MaterialDesignOutlinedButton}"
+                    Width="120" 
+                    Height="40"/>
+        </StackPanel>
+    </Grid>
+</Window>
